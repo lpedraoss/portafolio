@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+
+import introduction from './data/introduction.json';
+import HeaderPort from './component/pure/header_portfolio';
+import GoToDown from './component/pure/gotodown';
+import CardProjects from './component/pure/card_project';
+import { ScrollProvider } from './utils/context/scroll_provider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <ScrollProvider>
+      <div>
+        <HeaderPort />
+        <p className="intro-paragraph">
+          {introduction.introText}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <section id="content">
+          <h1>Contenido del portfolio</h1>
+          {/* Resto del contenido */}
+          <CardProjects />
+        </section>
+        <GoToDown />
+      </div>
+    </ScrollProvider>
   );
 }
 
