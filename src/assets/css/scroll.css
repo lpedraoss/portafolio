@@ -1,4 +1,3 @@
-/* scroll.css */
 @media screen and (min-width: 1200px) {
     .scroll-down {
         position: fixed;
@@ -18,13 +17,7 @@
 
 @media screen and (max-width: 500px) {
     .scroll-down {
-        position: fixed;
-        bottom: 40px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        display: none; /* Ocultar en pantallas pequeñas */
     }
 
     #content {
@@ -50,7 +43,7 @@
     opacity: 1;
 }
 
-.scroll-down .hidden {
+.scroll-down.hidden {
     opacity: 0;
     pointer-events: none;
 }
