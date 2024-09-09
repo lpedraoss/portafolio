@@ -1,28 +1,31 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import HeaderPort from "./component/pure/header_portfolio";
+import GoToDown from "./component/pure/gotodown";
+import CardProjects from "./component/pure/card_project";
 
-import introduction from './data/introduction.json';
-import HeaderPort from './component/pure/header_portfolio';
-import GoToDown from './component/pure/gotodown';
-import CardProjects from './component/pure/card_project';
-import { ScrollProvider } from './utils/context/scroll_provider';
+import ScrollContext from "./utils/context/scroll_context";
 
 function App() {
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <ScrollProvider>
-      <div>
-        <HeaderPort />
-        <p className="intro-paragraph">
-          {introduction.introText}
-        </p>
-        <section id="content">
-          <h1>Contenido del portfolio</h1>
-          {/* Resto del contenido */}
-          <CardProjects />
-        </section>
-        <GoToDown />
-      </div>
-    </ScrollProvider>
+    <ScrollContext.Provider value={{ isAtTop }}>
+      <HeaderPort />
+      <GoToDown />
+      <section id="content">
+        <CardProjects />
+      </section>
+    </ScrollContext.Provider>
   );
 }
 
