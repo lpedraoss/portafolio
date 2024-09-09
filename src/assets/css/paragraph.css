@@ -1,3 +1,4 @@
+/* paragraph.css */
 @media screen and (min-width: 600px) {
     .intro-paragraph {
         font-size: 18px;
@@ -8,21 +9,19 @@
         width: 60%;
         margin: 0 auto;
     }
-
 }
+
 @media screen and (max-width: 559px) {
     .intro-paragraph {
         font-size: 16px;
         line-height: 1.5;
         color: var(--text-color);
-        justify-content:baseline;
-        text-align:justify;
+        justify-content: baseline;
+        text-align: justify;
         padding: 10px;
         margin: 10px auto;
     }
-
 }
-
 
 .intro-paragraph strong {
     font-weight: bold;

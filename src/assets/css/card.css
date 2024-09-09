@@ -1,3 +1,4 @@
+/* card.css */
 .card {
     scroll-snap-align: start;
     position: relative;
@@ -11,13 +12,17 @@
     background-color: var(--accent-color);
     color: var(--text-color);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    animation: heartbeat 1.5s infinite;
-    position: relative;
+    transform: scale(1.03);
+    animation: heartbeat 1.2s infinite;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 .card a,
@@ -68,7 +73,6 @@
     }
 }
 
-
 .card-container {
     display: flex;
     flex-wrap: nowrap;
@@ -76,23 +80,24 @@
     padding: 20px;
 }
 
-.card-container .card,
-span {
-    margin-right: 20px;
-    color: var(--text-color);
+@media (min-width: 401px) {
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 20px;
+        overflow-x: unset;
+    }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 400px) {
     .card-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        overflow-x: initial;
-
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
 
-    .card-container .card,
-    span {
-        margin-bottom: 20px;
-        margin-right: 0;
+    .card {
+        flex: 0 0 auto;
+        margin-right: 10px;
     }
 }
