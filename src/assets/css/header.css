@@ -68,6 +68,8 @@
     .personal-data {
         grid-column: 1;
         grid-row: 3;
+        text-align: center;
+        /* Centrar texto en pantallas pequeñas */
     }
 
     .intro-paragraph {

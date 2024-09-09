@@ -1,28 +1,43 @@
 /* card.css */
 .card {
-    scroll-snap-align: start;
     position: relative;
     flex-shrink: 0;
     width: 300px;
     height: 200px;
-    margin-right: 20px;
+    margin: 20px; /* Ajusta el margen si es necesario */
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: var(--accent-color);
     color: var(--text-color);
     overflow: hidden;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Fondo del estante */
+    position: relative;
+    z-index: 1;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0; /* Color de fondo del estante */
+    border-radius: 8px;
+    z-index: -1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra del estante */
 }
 
 .card:hover {
     transform: scale(1.03);
     animation: heartbeat 1.2s infinite;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 .card:active {
     transform: scale(0.98);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 .card a,
@@ -30,7 +45,7 @@
     color: var(--text-color);
 }
 
-.card::before {
+.card::after {
     content: "ABRIR PROYECTO";
     position: absolute;
     top: 50%;
@@ -42,7 +57,7 @@
     transition: opacity 0.3s ease;
 }
 
-.card:hover::before {
+.card:hover::after {
     opacity: 1;
 }
 
@@ -74,30 +89,20 @@
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
     padding: 20px;
-}
-
-@media (min-width: 401px) {
-    .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 20px;
-        overflow-x: unset;
-    }
+    /* Elimina el deslizamiento horizontal */
+    overflow-x: hidden; /* Asegura que no haya scroll horizontal */
 }
 
 @media (max-width: 400px) {
     .card-container {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta el tamaño en pantallas pequeñas */
     }
 
     .card {
-        flex: 0 0 auto;
-        margin-right: 10px;
+        margin: 10px; /* Ajusta el margen en pantallas pequeñas si es necesario */
     }
 }
